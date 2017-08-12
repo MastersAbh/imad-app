@@ -20,9 +20,9 @@ var articles ={
         `
     },
     'art-three':{
-        title: 'Art 2'
-        , heading: 'Article Two',
-        date: '14 Aug',
+        title: 'Art 3'
+        , heading: 'Article Three',
+        date: '15 Aug',
         content: `
             Content 3 Should Display Here
         `
