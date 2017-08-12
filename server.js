@@ -2,15 +2,31 @@ var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
 
-
-var artone={
-    title: 'Art 1'
-    , heading: 'Article One',
-    date: '12 Aug',
-    content: `
-        Content Should Display Here
-    
-    `
+var articles ={
+    'art-one': {
+        title: 'Art 1'
+        , heading: 'Article One',
+        date: '12 Aug',
+        content: `
+            Content 1 Should Display Here
+        `
+    },
+    'art-two':{
+        title: 'Art 2'
+        , heading: 'Article Two',
+        date: '13 Aug',
+        content: `
+            Content 2 Should Display Here
+        `
+    },
+    'art-three':{
+        title: 'Art 2'
+        , heading: 'Article Two',
+        date: '14 Aug',
+        content: `
+            Content 3 Should Display Here
+        `
+    }
 };
 
 
@@ -70,14 +86,9 @@ app.get('/', function (req, res) {
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
-app.get('/art-one', function (req, res) {
-   res.send(createtemp(artone));
-});
-app.get('/art-two', function (req, res) {
-   res.sendFile(path.join(__dirname, 'ui', 'art-two.html'));
-});
-app.get('/art-three', function (req, res) {
-   res.sendFile(path.join(__dirname, 'ui', 'art-three.html'));
+app.get('/:art-name', function (req, res) {
+    var artname=req.params.art-name;
+   res.send(createtemp(articles[artname]));
 });
 app.get('/ui/madi.png', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
