@@ -20,11 +20,12 @@ button.onclick = function() {
     request.send(null);
 };
 
-var input=document.getElementById('name');
-var name=input.value;
+
 var submit=document.getElementById('sub');
 
 submit.onclick= function() {
+    var input=document.getElementById('name');
+var name=input.value;
     var request=new XMLHttpRequest();
     request.onreadystatechange = function() {
         if(request.readyState === XMLHttpRequest.DONE){
