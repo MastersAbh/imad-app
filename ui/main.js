@@ -1,7 +1,13 @@
-console.log('Loaded!');
-alert ("Hi I am Abhinav");
-var ele=document.getElementById('me');
-ele.innerHTML='New Val';
+var but=document.getElementById('counter');
+var c=0;
+but.onclick= function(){
+  
+  
+  
+  c= c + 1;
+  var sp=document.getElementById('c');
+  sp.innerHTML=c.toString();
+};
 
 var im= document.getElementById('ma');
 im.onclick = function() {
