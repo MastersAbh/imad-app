@@ -29,7 +29,7 @@ var articles ={
     }
 };
 
-
+/*
 
 function createtemp(data){
     var title=data.title;
@@ -74,7 +74,7 @@ function createtemp(data){
 </html>`
     return temp;
 }
-
+*/
 
 
 
