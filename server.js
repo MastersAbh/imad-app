@@ -183,10 +183,11 @@ app.get('/sub',function(req,res) {
     
     res.send(JSON.stringify(names));
 });
+/*
 app.get('/:articlename', function (req, res) {
     var articlename = req.params.articlename;
    res.send(createtemp(articles[articlename]));
-});
+});*/
 app.get('/ui/main.js', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'main.js'));
 });
