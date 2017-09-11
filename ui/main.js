@@ -31,15 +31,17 @@ var name=input.value;
     request.onreadystatechange = function() {
         if(request.readyState === XMLHttpRequest.DONE){
             if(request.status === 200){
-                alert("Logged In");
+                alert('Logged In');
             }
             else{
-                alert("Incorrect");
+                alert('Incorrect');
             }
         }
     };
     var username= document.getElementById('username').value;
     var password= document.getElementById('password').value;
+    console.log(username);
+    console.log(password);
     request.open('POST', 'http://mastersabhinav.imad.hasura-app.io/login', true);
     request.setRequestHeader('Content-Type','application/json');
     request.send(JSON.stringify({username: username, password: password}));
