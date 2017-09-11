@@ -154,7 +154,6 @@ app.post('/login', function(req,res){
                    res.send('Incorrect!');
                }
            }
-           res.send('user successfully created!');
        }
    });
 });
