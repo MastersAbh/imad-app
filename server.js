@@ -110,7 +110,7 @@ app.get('/test-db', function (req, res) {
 
 function hash(input, salt){
     var hashed = crypto.pbkdf2Sync( input, salt, 10000, 512, 'sha512');
-    return hashed.toString('hex');
+    return ["pbkdf2","10000",salt,hashed.toString('hex')].join('$');
 }
 app.get('/hash/:input', function(req,res){
    var hashedString = hash(req.params.input, 'random-string');
@@ -128,6 +128,32 @@ app.post('/create-user', function(req,res){
            res.status(500).send(err.toString());
        }
        else{
+           res.send('user successfully created!');
+       }
+   });
+});
+app.post('/login', function(req,res){
+    var username= req.body.username;
+    var password= req.body.password;
+    pool.query('Select * from "user" where username=$1',[username], function(err,result){
+      if(err){
+           res.status(500).send(err.toString());
+       }
+       else{
+           if(result.rows.length===0){
+               res.status(400).send('username/pw invalid');
+           }
+           else{
+               var dbString=result.rows[0].password;
+               var salt=dbString.split('$')[2];
+               var hashedPassword = hash(password,salt);
+               if(hashedPassword === dbString){
+                   res.send('Correct!');
+               }
+               else{
+                   res.send('Incorrect!');
+               }
+           }
            res.send('user successfully created!');
        }
    });
