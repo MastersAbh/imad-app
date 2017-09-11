@@ -81,6 +81,7 @@ function createtemp(data){
 var app = express();
 
 var Pool = require('pg').Pool;
+var crypto = require('crypto');
 var config = {
     user: 'mastersabhinav',
     database: 'mastersabhinav',
@@ -103,6 +104,15 @@ app.get('/test-db', function (req, res) {
            res.send(JSON.stringify(result.rows));
        }
     });
+});
+
+function hash(input, salt){
+    var hashed = crypto.pbkdf2Sync(input,salt,10000,512,'masters512');
+    return hashed.toString('hex');
+}
+app.get('/hash/:input', function(req,res){
+   var hashedString = hash(req.params.input, 'random-string');
+   res.send(hashedString); 
 });
 
 app.get('/ui/style.css', function (req, res) {
